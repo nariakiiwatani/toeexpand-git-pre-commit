@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# remove existing expand files and folders
+find . -name '**.toe.dir' -o -name '**.toe.toc' -o -name '**.tox.dir' -o -name '**.tox.toc' | xargs git add
+find . -name '**.toe.dir' -o -name '**.toe.toc' -o -name '**.tox.dir' -o -name '**.tox.toc' | xargs git rm -rf
+
+# execute toeexpand each toe|tox file if staged
+git status -s | grep -E '[AMUC]  .*\.(toe|tox)' | sed 's/[AMUC]  //' | xargs -L 1 /Applications/TouchDesigner.app/Contents/MacOS/toeexpand
+
+# git add every expanded files
+find . -name '**.toe.dir' -o -name '**.toe.toc' -o -name '**.tox.dir' -o -name '**.tox.toc' | xargs git add
+

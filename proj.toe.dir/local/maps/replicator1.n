@@ -1,0 +1,4 @@
+COMP:replicator
+tile 10 140 160 130
+flags =  parlanguage 0
+end

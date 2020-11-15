@@ -1,12 +1,17 @@
 #!/bin/bash
 
 # remove existing expand files and folders
-find . -name '**.toe.dir' -o -name '**.toe.toc' -o -name '**.tox.dir' -o -name '**.tox.toc' | xargs git add
-find . -name '**.toe.dir' -o -name '**.toe.toc' -o -name '**.tox.dir' -o -name '**.tox.toc' | xargs git rm -rf
+all=$(git status -s | grep -E '[AMUCD]  .*\.(toe|tox)' | sed 's/[AMUCD]  //')
+echo $all | sed 's/$/\.dir/' | xargs git add
+echo $all | sed 's/$/\.toc/' | xargs git add
+echo $all | sed 's/$/\.dir/' | xargs git rm -rf
+echo $all | sed 's/$/\.toc/' | xargs git rm -rf
 
 # execute toeexpand each toe|tox file if staged
-git status -s | grep -E '[AMUC]  .*\.(toe|tox)' | sed 's/[AMUC]  //' | xargs -L 1 /Applications/TouchDesigner.app/Contents/MacOS/toeexpand
+edited=$(git status -s | grep -E '[AMUC]  .*\.(toe|tox)' | sed 's/[AMUC]  //')
+echo $edited | xargs -L 1 /Applications/TouchDesigner.app/Contents/MacOS/toeexpand
 
 # git add every expanded files
-find . -name '**.toe.dir' -o -name '**.toe.toc' -o -name '**.tox.dir' -o -name '**.tox.toc' | xargs git add
+echo $edited | sed 's/$/\.dir/' | xargs git add
+echo $edited | sed 's/$/\.toc/' | xargs git add
 

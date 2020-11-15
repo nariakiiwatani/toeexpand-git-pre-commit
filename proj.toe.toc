@@ -3,9 +3,9 @@
 .grps
 .root
 .parm
-project1.n
-project1.parm
-project1.panel
+project1_renamed.n
+project1_renamed.parm
+project1_renamed.panel
 perform.n
 perform.parm
 local.n

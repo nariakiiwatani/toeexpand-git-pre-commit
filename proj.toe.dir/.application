@@ -5,7 +5,7 @@ desk -c *
 desk -n pane1 *
 
 #pane1
-desk -p / pane1
+desk -p /project1_renamed pane1
 desk -t neteditor pane1
 desk -k 0 pane1
 neteditor -c 0 -e 0 -G 0.75 -o 0 -r 1 -P 0.8 -s 0 -w 0 -x 0 -t 1 -d 1 -g 0 -p pane1
